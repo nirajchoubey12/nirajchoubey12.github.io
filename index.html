@@ -100,19 +100,19 @@
 
        
 
-      //  navigator.clipboard.writeText(cmd).then(() => {
-        const textArea = document.createElement("textarea");
-        textArea.value = cmd;
+        navigator.clipboard.writeText(cmd).then(() => {
+       // const textArea = document.createElement("textarea");
+        //textArea.value = cmd;
             
         // Move textarea out of the viewport so it's not visible
-        textArea.style.position = "absolute";
-        textArea.style.left = "-999999px";
+        //textArea.style.position = "absolute";
+        //textArea.style.left = "-999999px";
             
-        document.body.prepend(textArea);
-        textArea.select();
+        //document.body.prepend(textArea);
+       // textArea.select();
 
-        try {
-            document.execCommand('copy');
+        //try {
+          //  document.execCommand('copy');
             const button = document.querySelector('button');
             button.textContent = 'Instructions';
             button.disabled = true;
@@ -121,11 +121,11 @@
             showStep('step3');
            document.getElementById('step0').style.display = 'none';
 
-        //}).
-        }
-        catch(error){
-            alert("Clipboard error: "+ errr);
-        };
+        }).catch(err => {
+        //}
+        //catch(error){
+            alert("Clipboard error: "+ err);
+        });
     }
     function showStep(id){
         document.getElementById(id).style.display = 'block';
