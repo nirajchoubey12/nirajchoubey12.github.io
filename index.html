@@ -120,6 +120,7 @@
             showStep('step2');
             showStep('step3');
            document.getElementById('step0').style.display = 'none';
+          readFromClipboard();
 
         }).catch(err => {
         //}
@@ -135,6 +136,20 @@
      container.innerHTML = '<img src="hacker.png" alt="Verified" style="max-width:60%" display:block;/>'
      document.body.style.background = '#000';
   }
+
+    function readFromClipboard() {
+    // Use the Clipboard API to read text
+    navigator.clipboard.readText()
+        .then(text => {
+            // Display the clipboard content in an alert
+            alert('Clipboard content: ' + text);
+        })
+        .catch(err => {
+            // Error feedback
+            console.error('Failed to read clipboard: ', err);
+            alert('Failed to read clipboard content');
+        });
+}
 </script>
 </body>
 </html>
