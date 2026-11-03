@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+{%- comment -%} Page title: "Post title — Site" on posts, "Site — tagline" on home {%- endcomment -%}
+{%- if page.title and page.title != site.title -%}
+<title>{{ page.title }} — {{ site.title }}</title>
+{%- else -%}
+<title>{{ site.title }} — {{ site.tagline }}</title>
+{%- endif -%}
+
+<meta name="description" content="{{ page.description | default: site.description | strip_newlines }}" />
+<meta name="author" content="{{ site.author.name }}" />
+<meta name="theme-color" content="#080b0a" />
+
+<meta property="og:title" content="{{ page.title | default: site.title }}" />
+<meta property="og:description" content="{{ page.description | default: site.description | strip_newlines }}" />
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}" />
+<meta property="og:url" content="{{ page.url | absolute_url }}" />
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta name="twitter:card" content="summary" />
+
+<link rel="canonical" href="{{ page.url | absolute_url }}" />
+<link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23080b0a'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' fill='%235ef2a0' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+</head>
+<body>
+
+<div class="wrap">
+
+{{ content }}
+
+  <footer>
+    <span><span class="sig">$</span> built with jekyll &amp; plain css</span>
+    <span>hosted on github pages</span>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var el = document.getElementById('typed');
+    if (!el) return;
+    var text = el.dataset.text || el.textContent;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduce) { el.textContent = text; return; }
+
+    var i = 0;
+    el.textContent = '';
+    setTimeout(function tick() {
+      el.textContent = text.slice(0, ++i);
+      if (i < text.length) setTimeout(tick, 26);
+    }, 350);
+  })();
+</script>
+
+</body>
+</html>
