@@ -1,0 +1,33 @@
+---
+layout: default
+title: writing
+description: Notes on application security, agentic systems, and the messy middle.
+permalink: /writing/
+---
+  <section>
+    <p class="prompt-line">
+      <span class="prompt">nkc@sec</span>:<span class="prompt">~</span>$ <span class="cmd">ls writing/</span>
+    </p>
+    <h1 class="article-title">Writing</h1>
+  </section>
+
+  <section>
+    <div class="posts">
+      {%- for post in site.posts %}
+      <a class="post" href="{{ post.url | relative_url }}">
+        <div class="title">{{ post.title }}</div>
+        <div class="meta">
+          {{ post.date | date: "%d %b %Y" }}{% if post.summary %} &middot; {{ post.summary }}{% endif %}
+        </div>
+      </a>
+      {%- endfor %}
+
+      {%- if site.posts.size == 0 %}
+      <div class="empty">
+        <span class="prompt">$</span> nothing published yet — the first piece is in draft.
+      </div>
+      {%- endif %}
+    </div>
+  </section>
+
+  <p class="article-nav"><a href="{{ '/' | relative_url }}">&larr; home</a></p>
