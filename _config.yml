@@ -1,0 +1,36 @@
+# Site settings
+title: Niraj Choubey
+tagline: Application Security
+description: >-
+  Niraj Kumar Choubey — application security professional with years in AppSec,
+  formerly a developer, currently building multi-agentic systems for security.
+
+author:
+  name: Niraj Kumar Choubey
+
+# CHANGE THIS to your live URL once Pages is on:
+#   https://nirajchoubey12.github.io
+# If the repo is NOT named nirajchoubey12.github.io, set baseurl to "/repo-name"
+url: "https://nirajchoubey12.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: /writing/:title/
+timezone: Asia/Kolkata
+
+plugins:
+  - jekyll-feed
+
+# Every file in _posts/ uses the post layout automatically
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
